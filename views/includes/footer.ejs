@@ -1,0 +1,128 @@
+<style>
+    footer {
+      background-color: #111;
+      color: #fff;
+      padding: 60px 0 30px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .footer-col p {
+      margin-bottom: 15px;
+      color: #aaa;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: #222;
+      color: #fff;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background-color: var(--primary);
+      color: #111;
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 0.9rem;
+    }
+</style>
+<div class="container">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Aapna Theka</h3>
+        <p>Your premier destination for quality liquors from around the world. Discover our rotating menu of best-selling and exclusive products.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Our Products</h3>
+        <ul class="footer-links">
+          <li><a href="/api/beer">Beer</a></li>
+          <li><a href="/api/vodka">Vodka</a></li>
+          <li><a href="/api/wine">Wine</a></li>
+          <li><a href="/api/whiskey">Whiskey</a></li>
+          <li><a href="/api/rum">Rum</a></li>
+          <li><a href="/api/gin">Gin</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p>Subscribe to our newsletter for the latest updates and offers.</p>
+        <form class="newsletter-form">
+          <div class="form-group">
+            <input type="email" placeholder="Your Email Address" required>
+          </div>
+          <button type="submit" class="btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Aapna Theka. All Rights Reserved.</p>
+    </div>
+  </div>

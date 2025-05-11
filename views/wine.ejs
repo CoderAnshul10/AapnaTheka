@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aapna Theka | Premium Wines</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary: #8B0000;
+            --primary-dark: #5E0000;
+            --primary-light: #A52A2A;
+            --accent: #F8C471;
+            --text: #333333;
+            --text-light: #666666;
+            --background: #FFFAF0;
+            --white: #FFFFFF;
+            --gray-light: #F5F5F5;
+            --gray: #E0E0E0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', Georgia, serif;
+            margin-top: 0;
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--primary);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* History Section */
+        .history {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0.5rem auto 0;
+        }
+
+        .history-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .history-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .history-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Featured Wines */
+        .featured {
+            padding: 5rem 0;
+            background-color: var(--gray-light);
+        }
+
+        .featured-wines {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .wine-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .wine-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .wine-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .wine-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .wine-card:hover .wine-image img {
+            transform: scale(1.05);
+        }
+
+        .wine-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--accent);
+            color: var(--primary-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .wine-details {
+            padding: 1.5rem;
+        }
+
+        .wine-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .wine-origin {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .wine-price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .wine-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--gray);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            background-color: var(--gray-light);
+            border: none;
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--gray);
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            border: none;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+        }
+
+        .product-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-btn {
+            background-color: var(--white);
+            border: 1px solid var(--gray);
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: var(--gray-light);
+            text-align: center;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+        }
+
+        .testimonial-role {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 5rem 0;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: var(--radius) 0 0 var(--radius);
+            font-size: 1rem;
+        }
+
+        .newsletter-btn {
+            background-color: var(--accent);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 0 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            background-color: #e5b35c;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #222;
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-heading::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+            margin-top: 0.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+        }
+
+        /* Shopping Cart */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .cart-overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .cart {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: var(--white);
+            padding: 2rem 1.5rem;
+            transition: var(--transition);
+            overflow-y: auto;
+            z-index: 2001;
+        }
+
+        .cart.show {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .cart-title {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-cart:hover {
+            color: var(--primary);
+        }
+
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius);
+        }
+
+        .cart-item-details h4 {
+            margin: 0 0 0.5rem;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .cart-quantity-btn {
+            background-color: var(--gray-light);
+            border: none;
+            width: 25px;
+            height: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .cart-quantity-input {
+            width: 35px;
+            height: 25px;
+            text-align: center;
+            border: 1px solid var(--gray);
+            margin: 0 0.5rem;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .remove-item:hover {
+            color: var(--primary);
+        }
+
+        .cart-footer {
+            border-top: 1px solid var(--gray);
+            padding-top: 2rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--text-light);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .history-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .history-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+                transform: translateY(-10px);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: var(--radius);
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-btn {
+                border-radius: var(--radius);
+                width: 100%;
+                padding: 0.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 5rem 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cart {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-wine-glass-alt"></i> Aapna Theka
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#history">History</a></li>
+                    <li><a href="#featured">Featured</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+                <div class="nav-right">
+                    <div class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Discover Exceptional Wines</h1>
+            <p>Explore our curated collection of premium wines from around the world, each bottle telling a unique story of tradition, craftsmanship, and passion.</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="history" id="history">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Wine Heritage</h2>
+            </div>
+            <div class="history-content">
+                <div class="history-text">
+                    <p>Wine, one of the oldest alcoholic beverages, traces its origins to around 6000 BCE in the regions of modern-day Georgia and Iran. Early winemaking involved fermenting wild grapes, and it soon became an integral part of religious rituals and social gatherings in ancient civilizations like Mesopotamia and Egypt.</p>
+                    <p>In ancient Greece, wine was celebrated in festivals dedicated to Dionysus, the god of wine, and valued for its medicinal properties. The Romans further advanced winemaking, developing techniques like barrel aging and viticultural practices that laid the foundation for modern wine production.</p>
+                    <p>Today, wine is a global industry, deeply tied to culture, tradition, and innovation, embodying millennia of human craftsmanship. At Aapna Theka, we honor this rich heritage by offering a carefully selected range of wines that represent the best of traditional and contemporary winemaking.</p>
+                </div>
+                <div class="history-image">
+                    <img src="winehistory.png" alt="Historic Vineyard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Wines -->
+    <section class="featured" id="featured">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Selections</h2>
+            </div>
+            <div class="featured-wines">
+                <div class="wine-card">
+                    <div class="wine-image">
+                        <img src="twooceansshiraz.jpeg" alt="Two Oceans Shiraz">
+                        <span class="wine-badge">Best Seller</span>
+                    </div>
+                    <div class="wine-details">
+                        <h3 class="wine-name">Two Oceans Shiraz</h3>
+                        <p class="wine-origin">South Africa</p>
+                        <p class="wine-price">$10.00</p>
+                        <div class="wine-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="99">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="1" data-name="Two Oceans Shiraz" data-price="10.00" data-image="/placeholder.svg?height=400&width=300">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wine-card">
+                    <div class="wine-image">
+                        <img src="donnafugatasedarasicilia.jpeg" alt="Donnafugata Sedara Sicilia">
+                        <span class="wine-badge">Premium</span>
+                    </div>
+                    <div class="wine-details">
+                        <h3 class="wine-name">Donnafugata Sedara Sicilia</h3>
+                        <p class="wine-origin">Italy</p>
+                        <p class="wine-price">$12.00</p>
+                        <div class="wine-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="99">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="2" data-name="Donnafugata Sedara Sicilia" data-price="12.00" data-image="/placeholder.svg?height=400&width=300">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wine-card">
+                    <div class="wine-image">
+                        <img src="renierirossodimontalcinodoc.jpeg" alt="Renieri Rosso di Montalcino DOC">
+                    </div>
+                    <div class="wine-details">
+                        <h3 class="wine-name">Renieri Rosso di Montalcino DOC</h3>
+                        <p class="wine-origin">Italy</p>
+                        <p class="wine-price">$15.00</p>
+                        <div class="wine-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="99">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="3" data-name="Renieri Rosso di Montalcino DOC" data-price="15.00" data-image="/placeholder.svg?height=400&width=300">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Collection</h2>
+            </div>
+            <div class="product-filters">
+                <button class="filter-btn active" data-filter="all">All Wines</button>
+                <button class="filter-btn" data-filter="red">Red Wines</button>
+                <button class="filter-btn" data-filter="white">White Wines</button>
+                <button class="filter-btn" data-filter="sparkling">Sparkling</button>
+                <button class="filter-btn" data-filter="premium">Premium</button>
+            </div>
+            <div class="products-grid">
+                <div class="wine-card" data-category="red premium">
+                    <div class="wine-image">
+                        <img src="pontingcloseofplaycabernetsauvignon.jpeg" alt="Ponting Close Of Play Cabernet Sauvignon">
+                        <span class="wine-badge">Premium</span>
+                    </div>
+                    <div class="wine-details">
+                        <h3 class="wine-name">Ponting Close Of Play Cabernet Sauvignon</h3>
+                        <p class="wine-origin">Australia</p>
+                        <p class="wine-price">$18.00</p>
+                        <div class="wine-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="99">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="4" data-name="Ponting Close Of Play Cabernet Sauvignon" data-price="18.00" data-image="/placeholder.svg?height=400&width=300">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wine-card" data-category="red">
+                    <div class="wine-image">
+                        <img src="pontingthepinnacleshiraz.jpeg" alt="Ponting The Pinnacle Shiraz">
+                    </div>
+                    <div class="wine-details">
+                        <h3 class="wine-name">Ponting The Pinnacle Shiraz</h3>
+                        <p class="wine-origin">Australia</p>
+                        <p class="wine-price">$14.00</p>
+                        <div class="wine-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="99">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="5" data-name="Ponting The Pinnacle Shiraz" data-price="14.00" data-image="/placeholder.svg?height=400&width=300">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wine-card" data-category="red">
+                    <div class="wine-image">
+                        <img src="chapoutiermariusrouge.jpeg" alt="Chapoutier Marius Rouge">
+                    </div>
+                    <div class="wine-details">
+                        <h3 class="wine-name">Chapoutier Marius Rouge</h3>
+                        <p class="wine-origin">France</p>
+                        <p class="wine-price">$16.00</p>
+                        <div class="wine-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="99">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="6" data-name="Chapoutier Marius Rouge" data-price="16.00" data-image="/placeholder.svg?height=400&width=300">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wine-card" data-category="red">
+                    <div class="wine-image">
+                        <img src="chateaulaubesbordeaux.jpeg" alt="Chateau Laubes Bordeaux">
+                    </div>
+                    <div class="wine-details">
+                        <h3 class="wine-name">Chateau Laubes Bordeaux</h3>
+                        <p class="wine-origin">France</p>
+                        <p class="wine-price">$20.00</p>
+                        <div class="wine-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="99">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="7" data-name="Chateau Laubes Bordeaux" data-price="20.00" data-image="/placeholder.svg?height=400&width=300">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wine-card" data-category="red premium">
+                    <div class="wine-image">
+                        <img src="izadicrianzatempranello.jpeg" alt="Izadi Crianza Tempranello">
+                        <span class="wine-badge">Premium</span>
+                    </div>
+                    <div class="wine-details">
+                        <h3 class="wine-name">Izadi Crianza Tempranello</h3>
+                        <p class="wine-origin">Spain</p>
+                        <p class="wine-price">$22.00</p>
+                        <div class="wine-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="99">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="8" data-name="Izadi Crianza Tempranello" data-price="22.00" data-image="/placeholder.svg?height=400&width=300">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wine-card" data-category="sparkling premium">
+                    <div class="wine-image">
+                        <img src="moetandchandon.jpeg" alt="Moët & Chandon Brut Imperial">
+                        <span class="wine-badge">Premium</span>
+                    </div>
+                    <div class="wine-details">
+                        <h3 class="wine-name">Moët & Chandon Brut Imperial</h3>
+                        <p class="wine-origin">France</p>
+                        <p class="wine-price">$45.00</p>
+                        <div class="wine-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="99">
+                                <button class="quantity-btn increase">+</button>
+                            </div>
+                            <button class="add-to-cart-btn" data-id="10" data-name="Moët & Chandon Brut Imperial" data-price="45.00" data-image="/placeholder.svg?height=400&width=300">
+                                <i class="fas fa-shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Aapna Theka has the most impressive selection of wines I've seen. Their knowledge and recommendations have never disappointed me. I've discovered so many new favorites!"</p>
+                    <p class="testimonial-author">Sarah Johnson</p>
+                    <p class="testimonial-role">Wine Enthusiast</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Join Our Wine Club</h2>
+            <p>Subscribe to our newsletter for exclusive offers, tasting events, and expert recommendations delivered straight to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <%- include("includes/footer.ejs") %>
+        <!-- <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-wine-glass-alt"></i> Aapna Theka
+                    </a>
+                    <p>Curating exceptional wines from around the world since 2005. Our passion is bringing the finest wines to your table.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#history">About Us</a></li>
+                        <li><a href="#products">Shop</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Wine Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Red Wines</a></li>
+                        <li><a href="#">White Wines</a></li>
+                        <li><a href="#">Sparkling Wines</a></li>
+                        <li><a href="#">Premium Selection</a></li>
+                        <li><a href="#">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Wine Street, Vineyard City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@aapnatheka.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aapna Theka. All rights reserved.</p>
+            </div>
+        </div> -->
+    </footer>
+
+    <!-- Shopping Cart -->
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart" id="cart">
+            <div class="cart-header">
+                <h3 class="cart-title">Your Cart</h3>
+                <button class="close-cart" id="close-cart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">$0.00</span>
+                </div>
+                <button class="btn checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="wine.js"></script>
+</body>
+</html>

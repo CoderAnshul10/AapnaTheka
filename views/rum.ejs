@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aapna Theka - Premium Rum Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === VARIABLES === */
+        :root {
+            --primary: #e74c3c;
+            --primary-dark: #c0392b;
+            --secondary: #2c3e50;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --text: #333;
+            --gray: #95a5a6;
+            --success: #2ecc71;
+            --font-main: 'Poppins', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        /* === GENERAL STYLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* === NAVBAR === */
+        .navbar {
+            background-color: var(--secondary);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .cart-icon i {
+            font-size: 1.3rem;
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover i {
+            color: var(--primary);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1609951651973-03b4c838b0d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .hero-btns .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--light);
+        }
+
+        .hero-btns .btn-secondary:hover {
+            background-color: var(--light);
+            color: var(--secondary);
+        }
+
+        /* === HISTORY SECTION === */
+        #history {
+            background-color: white;
+        }
+
+        .history-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .history-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .history-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .history-text {
+            flex: 1;
+        }
+
+        .history-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .history-text p {
+            margin-bottom: 15px;
+            text-align: justify;
+            color: var(--text);
+        }
+
+        .history-text .btn {
+            margin-top: 20px;
+        }
+
+        /* === PRODUCTS SECTION === */
+        #products {
+            background-color: #f5f5f5;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            background-color: white;
+            border: 1px solid var(--gray);
+            color: var(--text);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-item {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-item:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-item:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .quick-view {
+            background-color: white;
+            color: var(--secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 0 5px;
+        }
+
+        .quick-view:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .product-details h5 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .product-details h5:hover {
+            color: var(--primary);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .product-rating i {
+            color: #f1c40f;
+            font-size: 0.9rem;
+            margin-right: 2px;
+        }
+
+        .product-rating span {
+            margin-left: 5px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .rate p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .add-to-cart {
+            background-color: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .quantity input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+
+        /* === TESTIMONIALS SECTION === */
+        #testimonials {
+            background-color: white;
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-item {
+            text-align: center;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 20px;
+            transition: var(--transition);
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid var(--primary);
+        }
+
+        .testimonial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .testimonial-position {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .testimonial-rating {
+            margin-top: 15px;
+        }
+
+        .testimonial-rating i {
+            color: #f1c40f;
+            font-size: 1rem;
+            margin: 0 2px;
+        }
+
+        /* === NEWSLETTER SECTION === */
+        .newsletter {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .newsletter h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 60px 0 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-col p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        /* === CART MODAL === */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: var(--transition);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-modal.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .close-cart:hover {
+            color: var(--primary);
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .cart-quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .cart-quantity-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .cart-quantity {
+            margin: 0 10px;
+            font-weight: 600;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .remove-item:hover {
+            color: var(--primary);
+        }
+
+        .cart-total {
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--secondary);
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .empty-cart i {
+            font-size: 3rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .empty-cart p {
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === TOAST NOTIFICATION === */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1002;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 1.2rem;
+        }
+
+        /* === RESPONSIVE STYLES === */
+        @media (max-width: 992px) {
+            .history-content {
+                flex-direction: column;
+            }
+            
+            .history-image, .history-text {
+                flex: none;
+                width: 100%;
+            }
+            
+            .history-image {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                padding: 0 15px;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding: 50px 0;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-col h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .cart-modal {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-btns {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form button {
+                width: 100%;
+                padding: 12px;
+                margin-top: 10px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-glass-whiskey"></i>Aapna Theka</a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Rum Collection</h1>
+                <p>Discover our exquisite selection of the finest rums from around the world. From light and refreshing to rich and complex, we have the perfect rum for every occasion.</p>
+                <div class="hero-btns">
+                    <a href="#products" class="btn">Shop Now</a>
+                    <a href="#history" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history">
+        <div class="container">
+            <h2 class="section-title">The Rich History of Rum</h2>
+            <div class="history-content">
+                <div class="history-image">
+                    <img src="rumhistory.png" alt="Rum History">
+                </div>
+                <div class="history-text">
+                    <h3>A Journey Through Time</h3>
+                    <p>Rum, one of the oldest distilled spirits, has a rich history that dates back to ancient times. It originated in the Caribbean during the 17th century when sugarcane plantations were established by European colonizers. The first rum distillation is believed to have taken place on the sugarcane plantations of Barbados.</p>
+                    <p>The spirit quickly gained popularity among sailors, pirates, and traders due to its long shelf life and the energizing effects it provided on long voyages. By the 18th century, rum became a valuable commodity in the triangular trade, being exchanged for slaves, molasses, and goods.</p>
+                    <p>Rum production spread to other regions, including Central and South America. The drink played a significant role in the history of the British Royal Navy, where sailors received daily rum rations known as "tot" until 1970.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Our Premium Selection</h2>
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="dark">Dark Rum</button>
+                <button class="filter-btn" data-filter="spiced">Spiced Rum</button>
+                <button class="filter-btn" data-filter="aged">Aged Rum</button>
+                <button class="filter-btn" data-filter="premium">Premium</button>
+            </div>
+            <div class="product-container">
+                <!-- Product 1 -->
+                <div class="product-item" data-category="dark premium">
+                    <span class="product-badge">Best Seller</span>
+                    <div class="product-image">
+                        <img src="rumbullion.jpeg" alt="Rumbullion">
+                        <div class="product-overlay">
+                            <div class="quick-view">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="quick-view">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">Dark Rum</div>
+                        <h5>Rumbullion</h5>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5)</span>
+                        </div>
+                        <div class="quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" value="1" min="1" class="product-quantity">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="rate">
+                                <p>$42.99</p>
+                            </div>
+                            <button class="add-to-cart" data-id="1" data-name="Rumbullion" data-price="42.99" data-image="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-item" data-category="spiced">
+                    <div class="product-image">
+                        <img src="chairmansreservespiced.jpg" alt="Chairman's Reserve Spiced">
+                        <div class="product-overlay">
+                            <div class="quick-view">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="quick-view">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">Spiced Rum</div>
+                        <h5>Chairman's Reserve Spiced</h5>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" value="1" min="1" class="product-quantity">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="rate">
+                                <p>$36.99</p>
+                            </div>
+                            <button class="add-to-cart" data-id="2" data-name="Chairman's Reserve Spiced" data-price="36.99" data-image="https://images.unsplash.com/photo-1614313511387-1436a4480ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-item" data-category="aged premium">
+                    <span class="product-badge">Premium</span>
+                    <div class="product-image">
+                        <img src="ronzacapacentenariosistemasolera23.jpeg" alt="Ron Zacapa Centenario">
+                        <div class="product-overlay">
+                            <div class="quick-view">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="quick-view">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">Aged Rum</div>
+                        <h5>Ron Zacapa Centenario</h5>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0)</span>
+                        </div>
+                        <div class="quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" value="1" min="1" class="product-quantity">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="rate">
+                                <p>$89.99</p>
+                            </div>
+                            <button class="add-to-cart" data-id="3" data-name="Ron Zacapa Centenario" data-price="89.99" data-image="https://images.unsplash.com/photo-1527281400683-1aae777175f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-item" data-category="dark">
+                    <div class="product-image">
+                        <img src="dunderhead.jpeg" alt="Dunderhead">
+                        <div class="product-overlay">
+                            <div class="quick-view">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="quick-view">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">Dark Rum</div>
+                        <h5>Dunderhead</h5>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(3.5)</span>
+                        </div>
+                        <div class="quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" value="1" min="1" class="product-quantity">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="rate">
+                                <p>$32.99</p>
+                            </div>
+                            <button class="add-to-cart" data-id="4" data-name="Dunderhead" data-price="32.99" data-image="https://images.unsplash.com/photo-1596392301391-6922e2e8a56e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-item" data-category="aged premium">
+                    <span class="product-badge">Limited</span>
+                    <div class="product-image">
+                        <img src="diplomaticoreservaexclusiva.jpg" alt="Diplomático Reserva">
+                        <div class="product-overlay">
+                            <div class="quick-view">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="quick-view">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">Aged Rum</div>
+                        <h5>Diplomático Reserva</h5>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.7)</span>
+                        </div>
+                        <div class="quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" value="1" min="1" class="product-quantity">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="rate">
+                                <p>$54.99</p>
+                            </div>
+                            <button class="add-to-cart" data-id="5" data-name="Diplomático Reserva" data-price="54.99" data-image="https://images.unsplash.com/photo-1516535794938-6063878f08cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-item" data-category="spiced">
+                    <div class="product-image">
+                        <img src="kakiragold.jpg" alt="Kakira Gold">
+                        <div class="product-overlay">
+                            <div class="quick-view">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="quick-view">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">Spiced Rum</div>
+                        <h5>Kakira Gold</h5>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                        <div class="quantity">
+                            <button class="quantity-btn minus">-</button>
+                            <input type="number" value="1" min="1" class="product-quantity">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="rate">
+                                <p>$28.99</p>
+                            </div>
+                            <button class="add-to-cart" data-id="6" data-name="Kakira Gold" data-price="28.99" data-image="https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-item">
+                    <div class="testimonial-img">
+                        <img src="people.png" alt="Customer">
+                    </div>
+                    <p class="testimonial-text">"The selection at Aapna Theka is unmatched. I found rare rums that I couldn't find anywhere else. Their knowledge and passion for quality spirits is evident in every bottle they sell."</p>
+                    <h4 class="testimonial-name">Michael Johnson</h4>
+                    <p class="testimonial-position">Rum Enthusiast</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Stay updated with our latest products, exclusive offers, and rum-related news.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <%- include("includes/footer.ejs") %>
+        <!-- <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>Aapna Theka</h4>
+                    <p>Your premier destination for the finest selection of rums from around the world. We pride ourselves on quality, variety, and exceptional customer service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#history">About Us</a></li>
+                        <li><a href="#products">Shop</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Rum Street, Spiritville</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +1 234 567 8900</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@aapnatheka.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Aapna Theka. All Rights Reserved.</p>
+            </div>
+        </div> -->
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span class="total-amount">$0.00</span>
+        </div>
+        <a href="#" class="checkout-btn">Proceed to Checkout</a>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span class="toast-message">Item added to cart!</span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="rum.js"></script>
+</body>
+</html>
